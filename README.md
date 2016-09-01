@@ -65,6 +65,8 @@ npm i -D posthtml-minify-classnames
 
 ## Usage
 
+Note: To use with external sheets, other plugins must be used, like [posthtml-inline-assets](https://github.com/jonathantneal/posthtml-inline-assets) and [posthtml-style-to-file](https://github.com/posthtml/posthtml-style-to-file), or other build task plugins.
+
 ```js
 var posthtml = require('posthtml');
 var minifyClassnames = require('posthtml-minify-classnames');
