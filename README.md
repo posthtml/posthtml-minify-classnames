@@ -119,5 +119,5 @@ See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs)
 [build]: https://travis-ci.org/simonlc/posthtml-minify-classnames.svg?branch=master
 [build-badge]: https://travis-ci.org/simonlc/posthtml-minify-classnames?branch=master
 
-[cover]: https://coveralls.io/repos/simonlc/posthtml-minify-classnames/badge.svg?branch=master
-[cover-badge]: https://coveralls.io/r/simonlc/posthtml-minify-classnames?branch=master
+[cover]: https://coveralls.io/repos/github/simonlc/posthtml-minify-classnames/badge.svg?branch=master
+[cover-badge]: https://coveralls.io/github/simonlc/posthtml-minify-classnames?branch=master
