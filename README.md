@@ -124,8 +124,9 @@ var minifyClassnames = require('posthtml-minify-classnames');
 
 posthtml()
   .use(minifyClassnames({
-    filter: /^js-/,
-    generator: 'genNameEmoji',
+    filter: /^.js-/,
+    genNameClass: 'genNameEmoji',
+    genNameId: 'genNameEmoji',
   }))
   .process(`
     <style>
@@ -141,11 +142,11 @@ posthtml()
 
 ## Options
 
-### Filter
+### filter
 
-Type: regex, Default: `/^js-/`
+Type: regex, Default: `/^.js-/`
 
-### Generator
+### genNameClass & genNameClass
 
 Type: string, Default: `'genName'`
 
