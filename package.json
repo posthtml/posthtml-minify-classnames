@@ -26,7 +26,8 @@
     "url": "https://github.com/simonlc/posthtml-minify-classnames/issues"
   },
   "scripts": {
-    "test": "nyc ava"
+    "test": "nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "postcss-safe-parser": "^1.0.7",
@@ -41,6 +42,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
+    "coveralls": "^2.11.12",
     "nyc": "^8.1.0"
   }
 }
