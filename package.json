@@ -1,6 +1,6 @@
 {
   "name": "posthtml-minify-classnames",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "PostHTML plugin for minifying classnames",
   "main": "index.js",
   "author": "Simon Laroche <hi@simon.lc> (https://simon.lc)",
@@ -26,8 +26,7 @@
     "url": "https://github.com/simonlc/posthtml-minify-classnames/issues"
   },
   "scripts": {
-    "test": "nyc ava",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc ava"
   },
   "dependencies": {
     "postcss-safe-parser": "^1.0.7",
@@ -42,7 +41,6 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
-    "coveralls": "^2.11.12",
     "nyc": "^8.1.0"
   }
 }

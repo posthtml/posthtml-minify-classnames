@@ -65,16 +65,15 @@ npm i -D posthtml-minify-classnames
 
 ## Usage
 
-Note: To use with external sheets, other plugins must be used, like [posthtml-inline-assets](https://github.com/jonathantneal/posthtml-inline-assets) and [posthtml-style-to-file](https://github.com/posthtml/posthtml-style-to-file), or other build task plugins.
-
 ```js
 var posthtml = require('posthtml');
 var minifyClassnames = require('posthtml-minify-classnames');
 
 posthtml()
   .use(minifyClassnames({
-    filter: /^js-/,
-    generator: 'genNameEmoji',
+    filter: /^.js-/,
+    genNameClass: 'genNameEmoji',
+    genNameId: 'genNameEmoji',
   }))
   .process(`
     <style>
@@ -90,11 +89,11 @@ posthtml()
 
 ## Options
 
-### Filter
+### filter
 
-Type: regex, Default: `/^js-/`
+Type: regex, Default: `/^.js-/`
 
-### Generator
+### genNameClass and genNameId
 
 Type: string, Default: `'genName'`
 
@@ -110,14 +109,14 @@ See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs)
 
 [1]: https://github.com/posthtml/posthtml
 
-[npm]: https://img.shields.io/npm/v/posthtml-minify-classnames.svg
-[npm-url]: https://npmjs.com/package/posthtml-minify-classnames
+[npm]: https://img.shields.io/npm/v/posthtml.svg
+[npm-url]: https://npmjs.com/package/posthtml
 
-[deps]: https://david-dm.org/simonlc/posthtml-minify-classnames.svg
-[deps-url]: https://david-dm.org/simonlc/posthtm-minify-classnames
+[deps]: https://david-dm.org/posthtml/posthtml.svg
+[deps-url]: https://david-dm.org/posthtml/posthtml
 
-[build]: https://travis-ci.org/simonlc/posthtml-minify-classnames.svg?branch=master
-[build-badge]: https://travis-ci.org/simonlc/posthtml-minify-classnames?branch=master
+[build]: https://travis-ci.org/posthtml/posthtml.svg?branch=master
+[build-badge]: https://travis-ci.org/posthtml/posthtml?branch=master
 
-[cover]: https://coveralls.io/repos/github/simonlc/posthtml-minify-classnames/badge.svg?branch=master
-[cover-badge]: https://coveralls.io/github/simonlc/posthtml-minify-classnames?branch=master
+[cover]: https://coveralls.io/repos/posthtml/posthtml/badge.svg?branch=master
+[cover-badge]: https://coveralls.io/r/posthtml/posthtml?branch=master
