@@ -156,6 +156,52 @@ Available options: `'genName'`, `'genNameEmoji'`, `'genNameEmojiString'`
 - `genNameEmoji` Generates small emoji based class names
 - `genNameEmojiString` Generates random emoji classes with 3 emojis in each.
 
+Example:
+
+```html
+<html>
+  <style>
+    #🚧🕥🏉 {
+      text-transform: uppercase;
+    }
+    .☘👙📙 {
+      color: blue;
+    }
+    .⏲📂⚗ {
+      background: white;
+    }
+    .js-overlay {
+      display: none;
+    }
+    #js-button {
+      color: blue;
+    }
+    @media (min-width: 768px) {
+      .☘👙📙 {
+        color: gray;
+      }
+    }
+  </style>
+  <body>
+    <svg style="display:none">
+      <symbol id="👂🗨🌹"><path d=""></path></symbol>
+    </svg>
+    <h1 id="🚧🕥🏉">Title</h1>
+    <p class="☘👙📙">OMG</p>
+    <div class="js-overlay"></div>
+    <div id="js-button"></div>
+    <div class="⏲📂⚗">
+      card content
+    </div>
+    <svg>
+      <use xlink:href="#👂🗨🌹"></use>
+    </svg>
+    <label for="🏻🔐🙍">Click me</label>
+    <input type="text" id="🏻🔐🙍">
+  </body>
+</html>
+```
+
 Future: Option to define own generator function.
 
 ### Contributing
