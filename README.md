@@ -150,7 +150,11 @@ Type: regex, Default: `/^.js-/`
 
 Type: string, Default: `'genName'`
 
-Available options: `'genName'`, `'genNameEmoji'`
+Available options: `'genName'`, `'genNameEmoji'`, `'genNameEmojiString'`
+
+- `genName` Generates the smallest possible class names
+- `genNameEmoji` Generates small emoji based class names
+- `genNameEmojiString` Generates random emoji classes with 3 emojis in each.
 
 Future: Option to define own generator function.
 
