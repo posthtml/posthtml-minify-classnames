@@ -146,15 +146,15 @@ posthtml()
 
 Type: regex, Default: `/^.js-/`
 
-### genNameClass & genNameClass
+### genNameClass & genNameId
 
 Type: string, Default: `'genName'`
 
 Available options: `'genName'`, `'genNameEmoji'`, `'genNameEmojiString'`
 
-- `genName` Generates the smallest possible class names
-- `genNameEmoji` Generates small emoji based class names
-- `genNameEmojiString` Generates random emoji classes with 3 emojis in each.
+- `'genName'` Generates the smallest possible names
+- `'genNameEmoji'` Generates small emoji based names
+- `'genNameEmojiString'` Generates random emoji with 3 emojis in each
 
 Example:
 
