@@ -150,11 +150,12 @@ Type: regex, Default: `/^.js-/`
 
 Type: string, Default: `'genName'`
 
-Available options: `'genName'`, `'genNameEmoji'`, `'genNameEmojiString'`
+Available options: `'genName'`, `'genNameEmoji'`, `'genNameEmojiString'`, `false`
 
 - `'genName'` Generates the smallest possible names
 - `'genNameEmoji'` Generates small emoji based names
 - `'genNameEmojiString'` Generates random emoji with 3 emojis in each
+- `false` Preserves names. Use this to ignore ids or classes
 
 Example:
 
