@@ -423,3 +423,171 @@ const filter = /^#icon-/;
       t.is(result.html, expected);
     });
 });
+
+test('ignore ids', t => {
+  const filter = /^.js-/;
+  const html = `
+  <html>
+    <style>
+      #some-id {
+        text-transform: uppercase;
+      }
+      .header__intro {
+        color: blue;
+      }
+      .card--profile {
+        background: white;
+      }
+      @media (min-width: 768px) {
+        .header__intro {
+          color: gray;
+        }
+        #another-id {
+          visibility: hidden;
+        }
+      }
+    </style>
+    <body>
+      <svg style="display:none">
+        <symbol id="icon-location"><path d=""></path></symbol>
+      </svg>
+      <h1 id="some-id">Title</h1>
+      <p class="header__intro">OMG</p>
+      <div class="card--profile">
+        card content
+      </div>
+      <svg>
+        <use xlink:href="#icon-location"></use>
+      </svg>
+      <label for="username">Click me</label>
+      <input type="text" id="username">
+    </body>
+  </html>
+  `;
+  const expected = `
+  <html>
+    <style>
+      #some-id {
+        text-transform: uppercase;
+      }
+      .a {
+        color: blue;
+      }
+      .b {
+        background: white;
+      }
+      @media (min-width: 768px) {
+        .a {
+          color: gray;
+        }
+        #another-id {
+          visibility: hidden;
+        }
+      }
+    </style>
+    <body>
+      <svg style="display:none">
+        <symbol id="icon-location"><path d=""></path></symbol>
+      </svg>
+      <h1 id="some-id">Title</h1>
+      <p class="a">OMG</p>
+      <div class="b">
+        card content
+      </div>
+      <svg>
+        <use xlink:href="#icon-location"></use>
+      </svg>
+      <label for="username">Click me</label>
+      <input type="text" id="username">
+    </body>
+  </html>
+  `;
+  return posthtml().use(plugin({ filter, genNameId: false })).process(html)
+    .then(result => {
+      t.is(result.html, expected);
+    });
+});
+
+test('ignore classes', t => {
+  const filter = /^.js-/;
+  const html = `
+  <html>
+    <style>
+      #some-id {
+        text-transform: uppercase;
+      }
+      .header__intro {
+        color: blue;
+      }
+      .card--profile {
+        background: white;
+      }
+      @media (min-width: 768px) {
+        .header__intro {
+          color: gray;
+        }
+        #another-id {
+          visibility: hidden;
+        }
+      }
+    </style>
+    <body>
+      <svg style="display:none">
+        <symbol id="icon-location"><path d=""></path></symbol>
+      </svg>
+      <h1 id="some-id">Title</h1>
+      <p class="header__intro">OMG</p>
+      <div class="card--profile">
+        card content
+      </div>
+      <svg>
+        <use xlink:href="#icon-location"></use>
+      </svg>
+      <label for="username">Click me</label>
+      <input type="text" id="username">
+    </body>
+  </html>
+  `;
+  const expected = `
+  <html>
+    <style>
+      #a {
+        text-transform: uppercase;
+      }
+      .header__intro {
+        color: blue;
+      }
+      .card--profile {
+        background: white;
+      }
+      @media (min-width: 768px) {
+        .header__intro {
+          color: gray;
+        }
+        #b {
+          visibility: hidden;
+        }
+      }
+    </style>
+    <body>
+      <svg style="display:none">
+        <symbol id="c"><path d=""></path></symbol>
+      </svg>
+      <h1 id="a">Title</h1>
+      <p class="header__intro">OMG</p>
+      <div class="card--profile">
+        card content
+      </div>
+      <svg>
+        <use xlink:href="#c"></use>
+      </svg>
+      <label for="d">Click me</label>
+      <input type="text" id="d">
+    </body>
+  </html>
+  `;
+  return posthtml().use(plugin({ filter, genNameClass: false })).process(html)
+    .then(result => {
+      t.is(result.html, expected);
+    });
+});
