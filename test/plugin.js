@@ -245,13 +245,13 @@ test('emoji string name gen', t => {
   const expected = `
   <html>
     <style>
-      #🚧🕥🏉 {
+      #🚹🛵🔂 {
         text-transform: uppercase;
       }
-      .☘👙📙 {
+      .💠🍀🆔 {
         color: blue;
       }
-      .⏲📂⚗ {
+      .🌳🥔🎅 {
         background: white;
       }
       .js-overlay {
@@ -261,31 +261,31 @@ test('emoji string name gen', t => {
         color: blue;
       }
       @media (min-width: 768px) {
-        .☘👙📙 {
+        .💠🍀🆔 {
           color: gray;
         }
       }
     </style>
     <body>
       <svg style="display:none">
-        <symbol id="👂🗨🌹"><path d=""></path></symbol>
+        <symbol id="🏋🐎🐪"><path d=""></path></symbol>
       </svg>
-      <h1 id="🚧🕥🏉">Title</h1>
-      <p class="☘👙📙">OMG</p>
+      <h1 id="🚹🛵🔂">Title</h1>
+      <p class="💠🍀🆔">OMG</p>
       <div class="js-overlay"></div>
       <div id="js-button"></div>
-      <div class="⏲📂⚗">
+      <div class="🌳🥔🎅">
         card content
       </div>
       <svg>
-        <use xlink:href="#👂🗨🌹"></use>
+        <use xlink:href="#🏋🐎🐪"></use>
       </svg>
-      <label for="🏻🔐🙍">Click me</label>
-      <input type="text" id="🏻🔐🙍">
+      <label for="😮📃🚼">Click me</label>
+      <input type="text" id="😮📃🚼">
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter: filter, genNameClass: 'genNameEmojiString', genNameId: 'genNameEmojiString' })).process(html)
+  return posthtml().use(plugin({ filter, genNameClass: 'genNameEmojiString', genNameId: 'genNameEmojiString' })).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
