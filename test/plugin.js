@@ -1,13 +1,6 @@
-'use strict';
 import test from 'ava';
-// import { MinifyClassnames } from './index';
-// const test = require('ava');
-const posthtml = require('posthtml');
-const plugin = require('../lib');
-
-test('foo', t => {
-  t.pass();
-});
+import posthtml from 'posthtml';
+import plugin from '../lib';
 
 test('name gen', t => {
   const filter = /^.js-/;
@@ -191,7 +184,7 @@ test('emoji name gen', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter: filter, genNameClass: 'genNameEmoji', genNameId: 'genNameEmoji' })).process(html)
+  return posthtml().use(plugin({ filter, genNameClass: 'genNameEmoji', genNameId: 'genNameEmoji' })).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
