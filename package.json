@@ -1,6 +1,6 @@
 {
   "name": "posthtml-minify-classnames",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "PostHTML plugin for minifying classnames",
   "main": "index.js",
   "author": "Simon Laroche <hi@simon.lc> (https://simon.lc)",
