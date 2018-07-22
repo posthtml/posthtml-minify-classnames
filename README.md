@@ -15,7 +15,7 @@ Use cases include:
 - Embeded devices like router admin panels e.g., http://www.dd-wrt.com/
 - Mobile and responsive sites to keep the latency low e.g., https://developers.google.com/web/showcase/2015/googleplus
 
-`posthtml-minify-classnames` supports svg xlink attributes.
+`posthtml-minify-classnames` supports svg href attributes.
 
 Before:
 ```html
@@ -54,7 +54,7 @@ Before:
       card content
     </div>
     <svg>
-      <use xlink:href="#icon-location"></use>
+      <use href="#icon-location"></use>
     </svg>
     <label for="username">Click me</label>
     <input type="text" id="username">
@@ -100,7 +100,7 @@ After:
       card content
     </div>
     <svg>
-      <use xlink:href="#b"></use>
+      <use href="#b"></use>
     </svg>
     <label for="c">Click me</label>
     <input type="text" id="c">
@@ -195,7 +195,7 @@ Example:
       card content
     </div>
     <svg>
-      <use xlink:href="#👂🗨🌹"></use>
+      <use href="#👂🗨🌹"></use>
     </svg>
     <label for="🏻🔐🙍">Click me</label>
     <input type="text" id="🏻🔐🙍">
