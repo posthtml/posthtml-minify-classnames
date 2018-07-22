@@ -217,7 +217,7 @@ See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs)
 [npm-url]: https://npmjs.com/package/posthtml-minify-classnames
 
 [deps]: https://david-dm.org/simonlc/posthtml-minify-classnames.svg
-[deps-url]: https://david-dm.org/simonlc/posthtm-minify-classnames
+[deps-url]: https://david-dm.org/simonlc/posthtml-minify-classnames
 
 [build]: https://travis-ci.org/simonlc/posthtml-minify-classnames.svg?branch=master
 [build-badge]: https://travis-ci.org/simonlc/posthtml-minify-classnames?branch=master
