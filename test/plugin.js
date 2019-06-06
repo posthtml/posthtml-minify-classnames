@@ -684,3 +684,42 @@ test('works with no options', t => {
       t.is(result.html, expected);
     });
 });
+
+test('strips unnecessary whitespaces when removing classes that do not match any in our CSS #8', t => {
+  const html = `
+  <html>
+    <style>
+      .intro {
+        color: blue;
+      }
+      .big {
+        font-size: 600px;
+      }
+    </style>
+    <body>
+      <h1 class="intro non-existing-class big">Look!</h1>
+    </body>
+  </html>
+  `;
+
+  const expected = `
+  <html>
+    <style>
+      .a {
+        color: blue;
+      }
+      .b {
+        font-size: 600px;
+      }
+    </style>
+    <body>
+      <h1 class="a b">Look!</h1>
+    </body>
+  </html>
+  `;
+
+  return posthtml().use(plugin()).process(html)
+      .then(result => {
+        t.is(result.html, expected);
+      });
+});
