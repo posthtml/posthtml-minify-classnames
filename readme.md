@@ -126,7 +126,7 @@ posthtml()
   .use(minifyClassnames({
     filter: /^.js-/,
     genNameClass: 'genNameEmoji',
-    genNameId: 'genNameEmoji',
+    genNameId: 'genNameEmoji'
   }))
   .process(`
     <style>
@@ -135,7 +135,7 @@ posthtml()
     </style>
     <div id="foo" class="bar">baz</div>
   `)
-  .then(function(result) {
+  .then(function (result) {
     console.log(result.html); //=> '<style>#a { color: red } .bar { color: blue }</style><div id="a" class="bar">baz</div>'
   });
 ```
