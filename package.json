@@ -17,13 +17,13 @@
     "class",
     "emoji"
   ],
-  "homepage": "https://github.com/simonlc/posthtml-minify-classnames",
+  "homepage": "https://github.com/posthtml/posthtml-minify-classnames",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonlc/posthtml-minify-classnames.git"
+    "url": "https://github.com/posthtml/posthtml-minify-classnames.git"
   },
   "bugs": {
-    "url": "https://github.com/simonlc/posthtml-minify-classnames/issues"
+    "url": "https://github.com/posthtml/posthtml-minify-classnames/issues"
   },
   "scripts": {
     "test": "nyc ava",

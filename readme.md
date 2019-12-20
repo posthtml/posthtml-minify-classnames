@@ -216,11 +216,11 @@ See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs)
 [npm]: https://img.shields.io/npm/v/posthtml-minify-classnames.svg
 [npm-url]: https://npmjs.com/package/posthtml-minify-classnames
 
-[deps]: https://david-dm.org/simonlc/posthtml-minify-classnames.svg
-[deps-url]: https://david-dm.org/simonlc/posthtml-minify-classnames
+[deps]: https://david-dm.org/posthtml/posthtml-minify-classnames.svg
+[deps-url]: https://david-dm.org/posthtml/posthtml-minify-classnames
 
-[build]: https://travis-ci.org/simonlc/posthtml-minify-classnames.svg?branch=master
-[build-badge]: https://travis-ci.org/simonlc/posthtml-minify-classnames?branch=master
+[build]: https://travis-ci.org/posthtml/posthtml-minify-classnames.svg?branch=master
+[build-badge]: https://travis-ci.org/posthtml/posthtml-minify-classnames?branch=master
 
-[cover]: https://coveralls.io/repos/github/simonlc/posthtml-minify-classnames/badge.svg?cache
-[cover-badge]: https://coveralls.io/github/simonlc/posthtml-minify-classnames?branch=master
+[cover]: https://coveralls.io/repos/github/posthtml/posthtml-minify-classnames/badge.svg?cache
+[cover-badge]: https://coveralls.io/github/posthtml/posthtml-minify-classnames?branch=master
