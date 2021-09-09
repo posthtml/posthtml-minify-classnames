@@ -34,24 +34,47 @@ npm i -D posthtml-minify-classnames
 ```js
 const posthtml = require('posthtml');
 const minifyClassnames = require('posthtml-minify-classnames');
+const html = `
+  <style>
+    #foo { color: red }
+    .bar { color: blue }
+    .baz { transition: all }
+  </style>
+  <div 
+    id="foo" 
+    class="bar"
+    x-transition:enter="baz"
+  >baz</div>
+`;
 
 posthtml()
   .use(minifyClassnames({
     filter: /^.bar/,
     genNameClass: 'genNameEmoji',
-    genNameId: 'genNameEmoji'
+    genNameId: 'genNameEmoji',
+    customAttributes: ['x-transition:enter']
   }))
-  .process(`
-    <style>
-      #foo { color: red }
-      .bar { color: blue }
-    </style>
-    <div id="foo" class="bar">baz</div>
-  `)
+  .process(html)
   .then(function (result) {
-    console.log(result.html); //=> '<style>#a { color: red } .bar { color: blue }</style><div id="a" class="bar">baz</div>'
+    console.log(result.html);
   });
 ```
+
+_**`=> result.html`**_
+```html
+<style>
+  #a { color: red } 
+  .bar { color: blue } 
+  .b { transition: all; }
+</style>
+
+<div 
+  id="a" 
+  class="bar" 
+  x-transition:enter="b"
+>baz</div>
+```
+
 > Note: To use with external sheets, other plugins must be used, like [posthtml-inline-assets](https://github.com/jonathantneal/posthtml-inline-assets) and [posthtml-style-to-file](https://github.com/posthtml/posthtml-style-to-file), or other build task plugins.
 
 ## Options
@@ -66,7 +89,7 @@ Description: *Regular expression that excludes names from processing*
 
 Type: `Boolean<false>|String<'genName'|'genNameEmoji'|'genNameEmojiString'>`  
 Default: `'genName'`  
-
+Description:  
 - `'genName'` Generates the smallest possible names
 - `'genNameEmoji'` Generates small emoji based names
 - `'genNameEmojiString'` Generates random emoji with 3 emojis in each
