@@ -97,6 +97,12 @@ Description:
 
 > **Note:** While emoji visually looks like a great way to reduce the size of input values, they often use 3-4 bytes or more (some can be over 20 bytes for a single rendered glyph). The below example 3 emoji string values range between 10-12 bytes in size, that's equivalent to ASCII strings up to 12 characters long. Meanwhile base36(`0-9,a-z`) provides an "alphabet" of 36 characters and an equivalent length of 3 characters is more than enough for most users (`36^3 = 46656`).
 
+### `customAttributes`
+
+Type: `Array`  
+Default: `[]`  
+Description: *Custom attribute names that will be involved in the process*
+
 ## TODO
 
 - Option to define own generator function.
