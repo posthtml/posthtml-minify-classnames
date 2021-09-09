@@ -90,7 +90,7 @@ test('name gen', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter })).process(html)
+  return posthtml().use(plugin({filter})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -184,7 +184,7 @@ test('emoji name gen', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter, genNameClass: 'genNameEmoji', genNameId: 'genNameEmoji' })).process(html)
+  return posthtml().use(plugin({filter, genNameClass: 'genNameEmoji', genNameId: 'genNameEmoji'})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -278,7 +278,7 @@ test('emoji string name gen', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter, genNameClass: 'genNameEmojiString', genNameId: 'genNameEmojiString' })).process(html)
+  return posthtml().use(plugin({filter, genNameClass: 'genNameEmojiString', genNameId: 'genNameEmojiString'})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -372,14 +372,14 @@ test('ignored pattern should not affect use#href', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter })).process(html)
+  return posthtml().use(plugin({filter})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
 });
 
 test('should work with xlink:href and href', t => {
-const filter = /^#icon-/;
+  const filter = /^#icon-/;
   const html = `
     <style>
       #icon-location {
@@ -418,7 +418,7 @@ const filter = /^#icon-/;
       <use xlink:href="#icon-location"></use>
     </svg>
   `;
-  return posthtml().use(plugin({ filter })).process(html)
+  return posthtml().use(plugin({filter})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -502,7 +502,7 @@ test('ignore ids', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter, genNameId: false })).process(html)
+  return posthtml().use(plugin({filter, genNameId: false})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -586,7 +586,7 @@ test('ignore classes', t => {
     </body>
   </html>
   `;
-  return posthtml().use(plugin({ filter, genNameClass: false })).process(html)
+  return posthtml().use(plugin({filter, genNameClass: false})).process(html)
     .then(result => {
       t.is(result.html, expected);
     });
@@ -719,7 +719,56 @@ test('strips unnecessary whitespaces when removing classes that do not match any
   `;
 
   return posthtml().use(plugin()).process(html)
-      .then(result => {
-        t.is(result.html, expected);
-      });
+    .then(result => {
+      t.is(result.html, expected);
+    });
+});
+
+test('Custom attribute names that will be involved in the process #36', t => {
+  const html = `
+  <html>
+    <style>
+      .baz {
+        color: blue;
+      }
+      .biz {
+        color: green;
+      }
+      .buz {
+        color: red;
+      }
+    </style>
+    <body>
+      <div 
+        x-transition:enter="baz"
+        x-transition:enter-start="biz"
+        x-transition:enter-end="buz"
+      >customAttributes</div>
+    </body>
+  </html>
+  `;
+
+  const expected = `
+  <html>
+    <style>
+      .a {
+        color: blue;
+      }
+      .b {
+        color: green;
+      }
+      .c {
+        color: red;
+      }
+    </style>
+    <body>
+      <div x-transition:enter="a" x-transition:enter-start="b" x-transition:enter-end="buz">customAttributes</div>
+    </body>
+  </html>
+  `;
+
+  return posthtml().use(plugin({customAttributes: ['x-transition:enter', 'x-transition:enter-start']})).process(html)
+    .then(result => {
+      t.is(result.html, expected);
+    });
 });
