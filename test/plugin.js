@@ -772,3 +772,17 @@ test('Custom attribute names that will be involved in the process #36', t => {
       t.is(result.html, expected);
     });
 });
+
+test('Dont remove classes that are not in our CSS', async t => {
+  const html = `
+    <div id="foo" class="bar">baz</div>
+  `;
+
+  const expected = `
+    <div id="foo" class="bar">baz</div>
+  `;
+
+  const result = await posthtml().use(plugin({removeUnfound: false})).process(html);
+
+  t.is(result.html, expected);
+});
