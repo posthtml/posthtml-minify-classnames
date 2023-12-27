@@ -103,6 +103,11 @@ Type: `Array`
 Default: `[]`  
 Description: *Custom attribute names that will be involved in the process*
 
+### `removeUnfound`
+Type: `boolean`  
+Default: `true`  
+Description: *Removes unfound or unused classes/attributes/identifiers*
+
 ## TODO
 
 - Option to define own generator function.
