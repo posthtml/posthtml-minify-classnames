@@ -1,3 +1,3 @@
-'use strict';
+import plugin from './lib'
 
-module.exports = require('./lib');
+export default plugin

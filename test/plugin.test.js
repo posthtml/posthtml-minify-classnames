@@ -419,7 +419,6 @@ test('should work with xlink:href and href', async () => {
       <use xlink:href="#icon-location"></use>
     </svg>`
 
-
   expect(
     await posthtml().use(plugin({ filter: /^#icon-/ })).process(html).then(result => result.html)
   ).toBe(expected)
@@ -765,7 +764,7 @@ test('rewrites custom attribute names defined in `customAttributes` #36', async 
   ).toBe(expected)
 })
 
-test('Dont remove classes that are not in our CSS', async () => {
+test(`don't remove classes that are not in our CSS`, async () => {
   const html = `<div id="foo" class="bar">baz</div>`
 
   const expected = `<div id="foo" class="bar">baz</div>`
@@ -773,4 +772,4 @@ test('Dont remove classes that are not in our CSS', async () => {
   expect(
     await posthtml().use(plugin({removeUnfound: false})).process(html).then(result => result.html)
   ).toBe(expected)
-});
+})
