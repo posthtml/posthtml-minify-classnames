@@ -7,4 +7,5 @@ export default defineBuildConfig({
   rootDir: './lib',
   outDir: '../dist',
   entries: ['index.js'],
+  declaration: true,
 })

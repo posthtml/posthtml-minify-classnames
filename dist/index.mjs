@@ -1151,14 +1151,14 @@ const nameGenerators = {
 };
 
 class MinifyClassnames {
-  constructor({ genNameClass, genNameId, filter, customAttributes = [], removeUnfound = true } = {}) {
+  constructor({ genNameClass, genNameId, filter, customAttributes = [], removeUnused = true } = {}) {
     this.filter = filter || /^.js-/;
     this.genNameClass = this.getNameGenerator(genNameClass, 7);
     this.genNameId = this.getNameGenerator(genNameId, 5);
     this.classMap = {};
     this.idMap = {};
     this.customAttributes = customAttributes;
-    this.removeUnfound = removeUnfound;
+    this.removeUnused = removeUnused;
   }
   getNameGenerator(value, seed) {
     if (value === false) {
@@ -1203,7 +1203,7 @@ class MinifyClassnames {
             if (this.isClassFiltered(value)) {
               return value;
             }
-            return this.classMap[value] || (this.removeUnfound ? "" : value);
+            return this.classMap[value] || (this.removeUnused ? "" : value);
           }).filter(Boolean).join(" ").trim();
         }
       }
@@ -1213,7 +1213,7 @@ class MinifyClassnames {
           if (this.isClassFiltered(value)) {
             return value;
           }
-          return this.classMap[value] || (this.removeUnfound ? "" : value);
+          return this.classMap[value] || (this.removeUnused ? "" : value);
         }).filter(Boolean).join(" ").trim();
       }
       if (node.attrs?.id) {
@@ -1222,10 +1222,10 @@ class MinifyClassnames {
           if (this.isIdFiltered(value)) {
             return value;
           }
-          if (!this.idMap[value] && this.removeUnfound) {
+          if (!this.idMap[value] && this.removeUnused) {
             this.idMap[value] = this.genNameId.next().value;
           }
-          return this.idMap[value] || (this.removeUnfound ? "" : value);
+          return this.idMap[value] || (this.removeUnused ? "" : value);
         }).join(" ");
       }
       if (node.attrs?.for) {
