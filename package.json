@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "vitest",
     "build": "unbuild",
+    "release": "npx np",
     "prepack": "unbuild",
     "pretest": "npm run lint",
     "test": "vitest run --coverage",
