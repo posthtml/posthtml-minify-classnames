@@ -119,12 +119,14 @@ Default: `[]`
 
 An array of strings containing custom attribute names that will have their values minified.
 
-### `removeUnfound`
+### `removeUnused`
 
 Type: `Boolean`\
 Default: `true`
 
 Whether to remove classes, attributes and other identifiers from the HTML that are not defined in the CSS.
+
+Currently this only works for values in HTML attributes, it does not remove unused selectors from the CSS.
 
 [npm]: https://www.npmjs.com/package/posthtml-minify-classnames
 [npm-version-shield]: https://img.shields.io/npm/v/posthtml-minify-classnames.svg

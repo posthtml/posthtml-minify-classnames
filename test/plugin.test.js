@@ -764,12 +764,12 @@ test('rewrites custom attribute names defined in `customAttributes` #36', async 
   ).toBe(expected)
 })
 
-test(`don't remove classes that are not in our CSS`, async () => {
+test(`don't remove unused selectors`, async () => {
   const html = `<div id="foo" class="bar">baz</div>`
 
   const expected = `<div id="foo" class="bar">baz</div>`
 
   expect(
-    await posthtml().use(plugin({removeUnfound: false})).process(html).then(result => result.html)
+    await posthtml().use(plugin({removeUnused: false})).process(html).then(result => result.html)
   ).toBe(expected)
 })
