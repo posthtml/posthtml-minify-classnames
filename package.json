@@ -2,9 +2,36 @@
   "name": "posthtml-minify-classnames",
   "version": "0.4.0",
   "description": "PostHTML plugin for minifying CSS selectors",
-  "main": "index.js",
   "author": "Simon Laroche <hi@simon.lc> (https://simon.lc)",
   "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vitest",
+    "build": "unbuild",
+    "prepack": "unbuild",
+    "pretest": "npm run lint",
+    "test": "vitest run --coverage",
+    "lint": "biome lint ./lib ./test"
+  },
+  "homepage": "https://github.com/posthtml/posthtml-minify-classnames",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/posthtml/posthtml-minify-classnames.git"
+  },
+  "bugs": {
+    "url": "https://github.com/posthtml/posthtml-minify-classnames/issues"
+  },
   "keywords": [
     "html",
     "posthtml",
@@ -17,23 +44,6 @@
     "class",
     "emoji"
   ],
-  "homepage": "https://github.com/posthtml/posthtml-minify-classnames",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/posthtml/posthtml-minify-classnames.git"
-  },
-  "bugs": {
-    "url": "https://github.com/posthtml/posthtml-minify-classnames/issues"
-  },
-  "scripts": {
-    "dev": "vitest",
-    "pretest": "npm run lint",
-    "test": "vitest run --coverage",
-    "lint": "biome lint ./lib ./test"
-  },
-  "engines": {
-    "node": ">=18.20"
-  },
   "dependencies": {
     "postcss-safe-parser": "4.0.2",
     "postcss-selector-parser": "6.0.6"
@@ -45,6 +55,10 @@
     "@biomejs/biome": "1.8.3",
     "@vitest/coverage-v8": "^2.0.5",
     "posthtml": "0.16.5",
+    "unbuild": "^2.0.0",
     "vitest": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=18.20"
   }
 }
