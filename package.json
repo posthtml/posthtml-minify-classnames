@@ -49,12 +49,12 @@
     "postcss-selector-parser": "6.0.6"
   },
   "peerDependencies": {
-    "posthtml": "^0.16.5"
+    "posthtml": "^0.16.6"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@vitest/coverage-v8": "^2.0.5",
-    "posthtml": "0.16.5",
+    "posthtml": "^0.16.6",
     "unbuild": "^2.0.0",
     "vitest": "^2.0.5"
   },
