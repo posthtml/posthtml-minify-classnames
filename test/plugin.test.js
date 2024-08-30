@@ -1,9 +1,8 @@
-import test from 'ava';
-import posthtml from 'posthtml';
-import plugin from '../lib';
+import plugin from '../lib'
+import posthtml from 'posthtml'
+import { expect, test } from 'vitest'
 
-test('name gen', t => {
-  const filter = /^.js-/;
+test('name gen', async () => {
   const html = `
   <html>
     <style>
@@ -45,8 +44,8 @@ test('name gen', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -88,16 +87,14 @@ test('name gen', t => {
       <label for="c">Click me</label>
       <input type="text" id="c">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('emoji name gen', t => {
-  const filter = /^.js-/;
+  expect(
+    await posthtml().use(plugin({ filter: /^.js-/ })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('emoji name gen', async () => {
   const html = `
   <html>
     <style>
@@ -139,8 +136,8 @@ test('emoji name gen', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -182,16 +179,18 @@ test('emoji name gen', t => {
       <label for="😂">Click me</label>
       <input type="text" id="😂">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter, genNameClass: 'genNameEmoji', genNameId: 'genNameEmoji'})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('emoji string name gen', t => {
-  const filter = /^.js-/;
+  expect(
+    await posthtml().use(plugin({ 
+      filter: /^.js-/,
+      genNameClass: 'genNameEmoji',
+      genNameId: 'genNameEmoji',
+    })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('emoji string name gen', async () => {
   const html = `
   <html>
     <style>
@@ -233,8 +232,8 @@ test('emoji string name gen', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -276,16 +275,18 @@ test('emoji string name gen', t => {
       <label for="😮📃🚼">Click me</label>
       <input type="text" id="😮📃🚼">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter, genNameClass: 'genNameEmojiString', genNameId: 'genNameEmojiString'})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('ignored pattern should not affect use#href', t => {
-  const filter = /^#icon-|^.js/;
+  expect(
+    await posthtml().use(plugin({ 
+      filter: /^.js-/,
+      genNameClass: 'genNameEmojiString',
+      genNameId: 'genNameEmojiString',
+    })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('ignored pattern should not affect use#href', async () => {
   const html = `
   <html>
     <style>
@@ -327,8 +328,8 @@ test('ignored pattern should not affect use#href', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -370,16 +371,16 @@ test('ignored pattern should not affect use#href', t => {
       <label for="b">Click me</label>
       <input type="text" id="b">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('should work with xlink:href and href', t => {
-  const filter = /^#icon-/;
+  expect(
+    await posthtml().use(plugin({ 
+      filter: /^#icon-|^.js/,
+    })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('should work with xlink:href and href', async () => {
   const html = `
     <style>
       #icon-location {
@@ -397,8 +398,8 @@ test('should work with xlink:href and href', t => {
     </svg>
     <svg>
       <use xlink:href="#icon-location"></use>
-    </svg>
-  `;
+    </svg>`
+
   const expected = `
     <style>
       #icon-location {
@@ -416,16 +417,14 @@ test('should work with xlink:href and href', t => {
     </svg>
     <svg>
       <use xlink:href="#icon-location"></use>
-    </svg>
-  `;
-  return posthtml().use(plugin({filter})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+    </svg>`
 
-test('ignore ids', t => {
-  const filter = /^.js-/;
+  expect(
+    await posthtml().use(plugin({ filter: /^#icon-/ })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('ignore ids', async () => {
   const html = `
   <html>
     <style>
@@ -462,8 +461,8 @@ test('ignore ids', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -500,16 +499,14 @@ test('ignore ids', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter, genNameId: false})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('ignore classes', t => {
-  const filter = /^.js-/;
+  expect(
+    await posthtml().use(plugin({ filter: /^.js-/, genNameId: false })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('ignore classes', async () => {
   const html = `
   <html>
     <style>
@@ -546,8 +543,8 @@ test('ignore classes', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -584,15 +581,14 @@ test('ignore classes', t => {
       <label for="d">Click me</label>
       <input type="text" id="d">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin({filter, genNameClass: false})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('works with no options', t => {
+  expect(
+    await posthtml().use(plugin({ filter: /^.js-/, genNameClass: false })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('works with no options', async () => {
   const html = `
   <html>
     <style>
@@ -634,8 +630,8 @@ test('works with no options', t => {
       <label for="username">Click me</label>
       <input type="text" id="username">
     </body>
-  </html>
-  `;
+  </html>`
+
   const expected = `
   <html>
     <style>
@@ -677,15 +673,14 @@ test('works with no options', t => {
       <label for="c">Click me</label>
       <input type="text" id="c">
     </body>
-  </html>
-  `;
-  return posthtml().use(plugin()).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  </html>`
 
-test('strips unnecessary whitespaces when removing classes that do not match any in our CSS #8', t => {
+  expect(
+    await posthtml().use(plugin()).process(html).then(result => result.html)
+  ).toBe(expected)
+})
+
+test('strips unnecessary whitespace when removing classes that do not match any in our CSS #8', async () => {
   const html = `
   <html>
     <style>
@@ -699,8 +694,7 @@ test('strips unnecessary whitespaces when removing classes that do not match any
     <body>
       <h1 class="intro non-existing-class big">Look!</h1>
     </body>
-  </html>
-  `;
+  </html>`
 
   const expected = `
   <html>
@@ -715,16 +709,14 @@ test('strips unnecessary whitespaces when removing classes that do not match any
     <body>
       <h1 class="a b">Look!</h1>
     </body>
-  </html>
-  `;
+  </html>`
 
-  return posthtml().use(plugin()).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  expect(
+    await posthtml().use(plugin()).process(html).then(result => result.html)
+  ).toBe(expected)
+})
 
-test('Custom attribute names that will be involved in the process #36', t => {
+test('rewrites custom attribute names defined in `customAttributes` #36', async () => {
   const html = `
   <html>
     <style>
@@ -745,8 +737,7 @@ test('Custom attribute names that will be involved in the process #36', t => {
         x-transition:enter-end="buz"
       >customAttributes</div>
     </body>
-  </html>
-  `;
+  </html>`
 
   const expected = `
   <html>
@@ -764,25 +755,21 @@ test('Custom attribute names that will be involved in the process #36', t => {
     <body>
       <div x-transition:enter="a" x-transition:enter-start="b" x-transition:enter-end="buz">customAttributes</div>
     </body>
-  </html>
-  `;
+  </html>`
 
-  return posthtml().use(plugin({customAttributes: ['x-transition:enter', 'x-transition:enter-start']})).process(html)
-    .then(result => {
-      t.is(result.html, expected);
-    });
-});
+  expect(
+    await posthtml().use(plugin({
+      customAttributes: ['x-transition:enter', 'x-transition:enter-start']
+    })).process(html).then(result => result.html)
+  ).toBe(expected)
+})
 
-test('Dont remove classes that are not in our CSS', async t => {
-  const html = `
-    <div id="foo" class="bar">baz</div>
-  `;
+test(`don't remove unused selectors`, async () => {
+  const html = `<div id="foo" class="bar">baz</div>`
 
-  const expected = `
-    <div id="foo" class="bar">baz</div>
-  `;
+  const expected = `<div id="foo" class="bar">baz</div>`
 
-  const result = await posthtml().use(plugin({removeUnfound: false})).process(html);
-
-  t.is(result.html, expected);
-});
+  expect(
+    await posthtml().use(plugin({removeUnused: false})).process(html).then(result => result.html)
+  ).toBe(expected)
+})
