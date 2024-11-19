@@ -47,8 +47,8 @@
     "emoji"
   ],
   "dependencies": {
-    "postcss-safe-parser": "4.0.2",
-    "postcss-selector-parser": "6.1.2"
+    "postcss-safe-parser": "7.0.1",
+    "postcss-selector-parser": "7.0.0"
   },
   "peerDependencies": {
     "posthtml": "^0.16.6"
